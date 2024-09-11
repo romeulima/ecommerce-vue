@@ -43,9 +43,8 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols="4" v-for="product in products">
+      <v-col cols="4" v-for="product in products" :key="product.id">
         <ProductCard  
-          :key="product.id"
           :id="product.id"
           :name="product.name"
           :price="product.price"

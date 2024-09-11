@@ -38,23 +38,31 @@
         <h2 class="text-h4 font-weight-black text-orange">Shopping cart</h2>
   
         <v-list v-if="details.length > 0">
-          <v-list-item v-for="detail in details" >
+          <v-list-item v-for="detail in details" :key="detail.id">
   
             <v-list-item-title>
-              Product id: {{ detail.id }} 
+              Product {{ detail.id }} 
               
-              <v-btn @click="decrease(detail.id)">
-                -
-              </v-btn>
+              <v-btn
+                class="ml-2"
+                icon="mdi-minus"
+                size="x-small" 
+                @click="decrease(detail.id)"
+              />
   
               Quantity: {{ detail.quantity }}
-              <v-btn @click="increase(detail.id)">
-                +
-              </v-btn>
+              <v-btn
+                icon="mdi-plus"
+                size="x-small" 
+                @click="increase(detail.id)"
+              />
   
-              <v-btn @click="removeProduct(detail.id)">
-                Delete
-              </v-btn>
+              <v-btn
+                class="ml-2"
+                icon="mdi-delete"
+                size="x-small" 
+                @click="removeProduct(detail.id)"
+              />
             </v-list-item-title>
           </v-list-item>
         </v-list>

@@ -26,21 +26,33 @@
       ></v-avatar>
 
       <RouterLink to="/" custom v-slot="{ navigate }">
-        <v-btn :active="route.name === 'home'" @click="navigate">
+        <v-btn
+          prepend-icon="mdi-home" 
+          :active="route.name === 'home'" 
+          @click="navigate"
+        >
           Home
         </v-btn>
       </RouterLink>
 
       <RouterLink to="/cart" custom v-slot="{ navigate }">
         <v-badge color="orange-lighten-1" :content="totalItems" :model-value="showBadge">
-          <v-btn :active="route.name === 'cart'" @click="navigate">
+          <v-btn 
+            prepend-icon="mdi-cart"
+            :active="route.name === 'cart'" 
+            @click="navigate"
+          >
             Cart
           </v-btn>
         </v-badge>
       </RouterLink>
       
       <RouterLink to="/about" custom v-slot="{ navigate }">
-        <v-btn :active="route.name === 'about'" @click="navigate">
+        <v-btn
+          prepend-icon="mdi-information-outline" 
+          :active="route.name === 'about'" 
+          @click="navigate"
+        >
           About
         </v-btn>
       </RouterLink>
