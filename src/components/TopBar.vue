@@ -4,10 +4,9 @@
   import { computed } from 'vue';
 
   const route = useRoute()
+  const cartStore = useCartStore()
 
   const totalItems = computed(() => {
-    const cartStore = useCartStore()
-
     return cartStore.totalItems
   })
 

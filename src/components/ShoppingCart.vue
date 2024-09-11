@@ -2,26 +2,25 @@
   import { useCartStore } from '@/stores/cart';
   import { computed } from 'vue';
   import { RouterLink } from 'vue-router';
-
+  
+  const cartStore = useCartStore()
+  
   const increase = (id: number) => {
-    cartStore.value.increaseProduct(id)
+    cartStore.increaseProduct(id)
   }
 
   const decrease = (id: number) => {
-    cartStore.value.decreaseProduct(id)
+    cartStore.decreaseProduct(id)
   }
 
   const removeProduct = (id: number) => {
-    cartStore.value.removeProduct(id)
+    cartStore.removeProduct(id)
   }
 
   const details = computed(() => {
-    return cartStore.value.details
+    return cartStore.details
   })
 
-  const cartStore = computed(() => {
-    return useCartStore()
-  })
 </script>
 
 <template>

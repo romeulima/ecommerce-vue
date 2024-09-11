@@ -6,11 +6,9 @@ export const useCartStore = defineStore('cart', () => {
   const details = ref<CartDetails[]>([])
 
   const totalItems = computed(() => {
-    let sum = 0
-    details.value.forEach(product => {
-      sum += product.quantity
-    })
-    return sum
+    return details.value.reduce((total, currentValue) => {
+      return total + currentValue.quantity
+    }, 0)
   })
 
   function addProduct(productId: number) {
@@ -27,8 +25,7 @@ export const useCartStore = defineStore('cart', () => {
   }
 
   function removeProduct(productId: number) {
-    const newList = details.value.filter(product => product.id !== productId)
-    details.value = newList
+    details.value = details.value.filter(product => product.id !== productId)
   }
   
   function increaseProduct(productId: number) {
@@ -44,10 +41,10 @@ export const useCartStore = defineStore('cart', () => {
     
     if (productFound) {
       productFound.quantity--
-    }
 
-    if (productFound?.quantity === 0) {
-      removeProduct(productFound?.id)
+      if (productFound.quantity === 0) {
+        removeProduct(productFound?.id)
+      }
     }
   }
 
