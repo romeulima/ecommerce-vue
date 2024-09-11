@@ -1,7 +1,9 @@
 <script setup lang="ts">
-  import { RouterLink } from 'vue-router';
+  import { RouterLink, useRoute } from 'vue-router';
   import { useCartStore } from '@/stores/cart';
   import { computed } from 'vue';
+
+  const route = useRoute()
 
   const totalItems = computed(() => {
     const cartStore = useCartStore()
@@ -11,7 +13,7 @@
 
   const showBadge = computed(() => {
     return totalItems.value > 0
-  }) 
+  })
 </script>
 
 <template>
@@ -23,22 +25,22 @@
         size="32"
       ></v-avatar>
 
-      <RouterLink to="/" custom v-slot="{navigate}">
-        <v-btn @click="navigate">
+      <RouterLink to="/" custom v-slot="{ navigate }">
+        <v-btn :active="route.name === 'home'" @click="navigate">
           Home
         </v-btn>
       </RouterLink>
 
-      <RouterLink to="/cart" custom v-slot="{navigate}">
+      <RouterLink to="/cart" custom v-slot="{ navigate }">
         <v-badge color="orange-lighten-1" :content="totalItems" :model-value="showBadge">
-          <v-btn @click="navigate">
+          <v-btn :active="route.name === 'cart'" @click="navigate">
             Cart
           </v-btn>
         </v-badge>
       </RouterLink>
       
-      <RouterLink to="/about" custom v-slot="{navigate}">
-        <v-btn @click="navigate">
+      <RouterLink to="/about" custom v-slot="{ navigate }">
+        <v-btn :active="route.name === 'about'" @click="navigate">
           About
         </v-btn>
       </RouterLink>
