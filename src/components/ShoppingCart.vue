@@ -6,6 +6,7 @@
   const cartStore = useCartStore()
   
   const increase = (id: number) => {
+    console.log(id)
     cartStore.increaseProduct(id)
   }
 
