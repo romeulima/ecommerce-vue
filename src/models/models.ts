@@ -5,7 +5,7 @@ export interface Product {
 }
 
 export interface CartDetails{
-  id: number
+  product: Product
   quantity: number
 }
 

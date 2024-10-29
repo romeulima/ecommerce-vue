@@ -1,22 +1,12 @@
 <script setup lang="ts">
   import { useCartStore } from '@/stores/cart';
-  import { computed } from 'vue';
+  import { computed, toRef } from 'vue';
   import { RouterLink } from 'vue-router';
   
   const cartStore = useCartStore()
   
-  const increase = (id: number) => {
-    cartStore.increaseProduct(id)
-  }
-
-  const decrease = (id: number) => {
-    cartStore.decreaseProduct(id)
-  }
-
-  const removeProduct = (id: number) => {
-    cartStore.removeProduct(id)
-  }
-
+  const { increaseProduct, decreaseProduct, removeProduct } = cartStore
+  
   const details = computed(() => {
     return cartStore.details
   })
@@ -37,30 +27,30 @@
         <h2 class="text-h4 font-weight-black text-orange">Shopping cart</h2>
   
         <v-list v-if="details.length > 0">
-          <v-list-item v-for="detail in details" :key="detail.id">
+          <v-list-item v-for="detail in details" :key="detail.product.id">
   
             <v-list-item-title>
-              Product {{ detail.id }} 
+              {{ detail.product.name }} 
               
               <v-btn
                 class="ml-2"
                 icon="mdi-minus"
                 size="x-small" 
-                @click="decrease(detail.id)"
+                @click="decreaseProduct(detail.product.id)"
               />
   
               Quantity: {{ detail.quantity }}
               <v-btn
                 icon="mdi-plus"
                 size="x-small" 
-                @click="increase(detail.id)"
+                @click="increaseProduct(detail.product.id)"
               />
   
               <v-btn
                 class="ml-2"
                 icon="mdi-delete"
                 size="x-small" 
-                @click="removeProduct(detail.id)"
+                @click="removeProduct(detail.product.id)"
               />
             </v-list-item-title>
           </v-list-item>

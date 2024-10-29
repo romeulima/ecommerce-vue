@@ -7,7 +7,7 @@
   function handleClickButton() {
     const cartStore = useCartStore()
 
-    cartStore.addProduct(props.id)
+    cartStore.addProduct(props)
   }
 </script>
 
